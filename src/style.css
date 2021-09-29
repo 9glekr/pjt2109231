@@ -1,0 +1,298 @@
+@charset "UTF-8";
+@use postcss-cssnext;
+
+body{
+  overflow: hidden;
+  touch-action: pan-x pan-y;
+  touch-action: none;
+}
+
+.top {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  z-index: 999999;
+  background: #f9f9f9;
+}
+.entry {
+  width: 100%;
+  text-align: center;
+}
+
+.finish {
+  border-left: 1px dotted;
+  min-height: 100vh;
+  width: 1px;
+  position: absolute;
+  right: 10%;
+  z-index: 1;
+}
+
+.dietrue {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffd2d275;
+  position: absolute;
+  z-index: 99999999;
+}
+.diefalse { display: none }
+
+.freezetrue {
+  width: 100%;
+  min-height: 100vh;
+  background: #0088ff21;
+  position: absolute;
+  z-index: 9999999;
+}
+.freezefalse { display: none }
+
+.touchmsgtrue {
+  display: block
+}
+.touchmsgfalse {
+  display: none
+  /*text-shadow: 0 0 0 whitesmoke;*/
+  /*animation: smoky 1s 3s both;*/
+}
+
+.unit {
+  width: 15px;
+  height: 50px;
+  background: #b9ffff;
+  position: absolute;
+  top: 300px;
+  z-index: 1;
+}
+.unit-die {
+  background: black;
+}
+
+h1.txtfalse {
+  display: none;
+  /*
+  text-shadow: 0 0 0 whitesmoke;
+  animation: smoky 5s 3s both;
+  */
+}
+h1.txttrue {
+  font-size: 20px;
+  min-width:11px;
+  white-space: nowrap;
+  margin: 0;
+  position: fixed;
+  color: transparent;
+  top:50px;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+h1.txttrue::before {
+  content: "무궁화 꽃이 피었습니다";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: black;
+  overflow: hidden;
+  animation: typing 5.5s steps(80) both;
+}
+
+@keyframes typing{
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes smoky {
+  60% {
+    text-shadow: 0 0 40px whitesmoke;
+    text-shadow: 0 0 40px black;
+  }
+  to {
+    transform:
+            translate3d(1rem,-8rem,0)
+            rotate(-40deg)
+            skewX(70deg)
+            scale(1.5);
+    text-shadow: 0 0 20px whitesmoke;
+    text-shadow: 0 0 20px black;
+    opacity: 0;
+  }
+}
+
+
+/*
+body {
+  background: black;
+  overflow: hidden;
+  font: 2vw/15vh "Finger Paint";
+  text-align: center;
+  color: transparent;
+  backface-visibility: hidden;
+}
+*/
+
+.textArea h1, span {
+  display: inline-block;
+  text-shadow: 0 0 0 whitesmoke;
+  animation: typing 3s steps(31), smoky 6s 1s infinite;
+}
+
+.textArea h1, span:nth-child(even){
+  animation-name: smoky-mirror;
+}
+
+@keyframes smoky {
+  60% {
+    text-shadow: 0 0 40px whitesmoke;
+  }
+  to {
+    transform:
+            translate3d(15rem,-8rem,0)
+            rotate(-40deg)
+            skewX(70deg)
+            scale(1.2);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
+}
+
+@keyframes smoky-mirror {
+  60% {
+    text-shadow: 0 0 40px whitesmoke; }
+  to {
+    transform:
+            translate3d(18rem,-8rem,0)
+            rotate(-40deg)
+            skewX(-70deg)
+            scale(2);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+.bike {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  margin: auto;
+  position: relative;
+  background: #42B0CE;
+  background: white;
+  overflow: hidden;
+}
+.bike__cloud-1 {
+  position: absolute;
+  top: 70px;
+  left: 300px;
+  width: 60px;
+  height: 60px;
+  border-radius: 100% 100% 0 100%;
+  background: white;
+  animation: 10s bike-cloud linear infinite;
+  animation-delay: -.2s;
+  opacity: .6;
+}
+.bike__cloud-1:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 54px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100% 100% 0 0;
+  background: white;
+}
+.bike__cloud-1:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 90px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100% 100% 100% 0;
+  background: white;
+}
+.bike__cloud-2 {
+  position: absolute;
+  top: 172px;
+  left: 110px;
+  width: 34px;
+  height: 34px;
+  border-radius: 100% 100% 100% 0;
+  background: white;
+  animation: 4s bike-cloud linear infinite;
+  animation-delay: -.5s;
+  opacity: .6;
+}
+.bike__cloud-2:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  width: 24px;
+  height: 24px;
+  border-radius: 100% 100% 0 0;
+  background: white;
+}
+.bike__cloud-2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100% 100% 0 100%;
+  background: white;
+}
+.bike__cloud-3 {
+  position: absolute;
+  top: 172px;
+  left: 630px;
+  width: 34px;
+  height: 34px;
+  border-radius: 100% 100% 100% 0;
+  background: white;
+  animation: 4s bike-cloud linear infinite;
+  animation-delay: -.8s;
+  opacity: .6;
+}
+.bike__cloud-3:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  width: 24px;
+  height: 24px;
+  border-radius: 100% 100% 0 0;
+  background: white;
+}
+.bike__cloud-3:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100% 100% 0 100%;
+  background: white;
+}
+
+@keyframes bike-cloud {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100px;
+  }
+}
