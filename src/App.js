@@ -4,7 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import './App.css';
 import './style.css';
 
-const socket =  io.connect('http://61.80.148.48')
+// const socket =  io.connect('http://61.80.148.48')
+const socket =  io.connect('http://192.168.0.6')
+
 
 function App() {
     // 참가자 수

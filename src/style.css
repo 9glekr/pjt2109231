@@ -56,12 +56,13 @@ body{
 }
 
 .unit {
-  width: 15px;
-  height: 50px;
-  background: #b9ffff;
+  width: 24px;
+  height: 24px;
+  /* background: #b9ffff; */
   position: absolute;
   top: 300px;
   z-index: 1;
+  background-image: url("wait24.png");
 }
 .unit-die {
   background: black;
