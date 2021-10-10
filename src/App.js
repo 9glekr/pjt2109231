@@ -5,12 +5,15 @@ import './style.css';
 
 // const socket =  io.connect('http://61.80.148.48')
 // const socket =  io.connect('http://192.168.0.6')
-const socket =  io.connect('http://192.168.50.102')
+// const socket =  io.connect('http://192.168.50.102')
+const socket =  io.connect('http://localhost')
 
 
 function App() {
     // 정보 입력 여부
     const [isEnter, setIsEnter] = useState(false);
+    // 입력 상태
+    const [isInput, setIsInput] = useState(false);
     // 입력 이름
     const [enterName, setEnterName] = useState(localStorage.getItem('uid'));
     // 입력 번호
@@ -34,8 +37,32 @@ function App() {
     // 터치타임
     const [touchMsg, setTouchMsg] = useState(false);
 
+    // 정보 입력 체크
+    const localStorageHasItem = key => {
+        return key in localStorage;
+    };
+    const isCheckedEnter = () => {
+        let isChecked = localStorageHasItem('uid');
+        if (isChecked && localStorageHasItem('number')) {
+            isChecked = true;
+        } else {
+            isChecked = false;
+        }
+
+        return isChecked;
+    };
 
     useEffect(()=>{
+        // console.log( isCheckedEnter() );
+        // 정보가 있으면 초대장 숨김
+        setIsEnter(isCheckedEnter());
+
+
+
+
+
+
+
         //new Notification('ok', {body: 'good job!'});
         sendMessage('test');
 
@@ -133,20 +160,24 @@ function App() {
         }
 
 
+        setIsInput(true);
+        // setIsEnter(true);
+    };
 
-        setIsEnter(true);
+    const handleEnterClick = () => {
+        setIsEnter(isCheckedEnter());
     };
 
     return (
         <>
             <div className="top">
                 <div className="entry"><div style={{color: 'white'}}>참가자</div> {users}명</div>
-                <h1 className={`txt${touchMsg}`} style={{color: 'white'}}><div style={{'display': 'none'}}>무궁화 꽃이 피었습니다</div></h1>
+                <h1 className={`txt${touchMsg}`} style={{color: 'white'}}><div style={{'display': 'none1'}}>무궁화 꽃이 피었습니다</div></h1>
             </div>
             <div className="finish"></div>
-            <div className="enter-card">
+            <div className={`enter-card enter-card-${isEnter}`}>
                 <div className="cover">
-                    <div className={`welcome-img-${isEnter}`}>
+                    <div className={`welcome-img-${isInput}`}>
                         <input type="url"
                                className="input-name"
                                placeholder="your name"
@@ -167,8 +198,9 @@ function App() {
                                    setEnterNumber(value)
                                }}
                         ></input>
+                        <div onClick={handleEnterClick}>입장</div>
                     </div>
-                    <div className={`welcome-img-${!isEnter} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>
+                    <div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>
                 </div>
             </div>
             <div className={'textArea'} style={{width: '500px', height: '500px', background: 'black', display: 'none'}}>

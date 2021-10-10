@@ -38,6 +38,9 @@ body{
   background: white;
   /*align-items: center;*/
 }
+.enter-card-true {
+  display: none;
+}
 .welcome-img {
   font-size: 1.5em;
   padding-top: 32px;
@@ -142,7 +145,7 @@ h1.txttrue::before {
   width: 100%;
   height: 100%;
   color: black;
-  color: white;
+  /*color: white;*/
   overflow: hidden;
   animation: typing 5.5s steps(80) both;
 }
