@@ -1,0 +1,111 @@
+import React, {useState, useEffect} from 'react';
+
+function withEnter() {
+    // 정보 입력 여부
+    const [isEnter, setIsEnter] = useState(false);
+    // 입력 상태
+    const [isInput, setIsInput] = useState(false);
+    // 입력 번호
+    const [enterNumber, setEnterNumber] = useState(localStorage.getItem('number'));
+
+    // 정보 입력 체크
+    const localStorageHasItem = key => {
+        return key in localStorage;
+    };
+
+    /**
+     * 이름
+     * @type {{}}
+     */
+    const NAME = (() => {
+        // 입력 이름
+        const [name, setName] = useState('');
+
+
+        const handleChange = data => {
+            console.log( data )
+        };
+
+        return {
+            change: handleChange,
+            // value: [name, setName]
+        }
+    })();
+
+
+    const isCheckedEnter = () => {
+        let isChecked = localStorageHasItem('uid');
+        if (isChecked && localStorageHasItem('number')) {
+            isChecked = true;
+        } else {
+            isChecked = false;
+        }
+
+        return isChecked;
+    };
+
+    useEffect(()=>{
+    },[]);
+
+
+/*
+    // 커버 클릭 이벤트
+    const handleWelcomeClick = () => {
+        console.log(localStorage.getItem('uid'))
+
+        console.log(enterName);
+        console.log(enterNumber);
+
+        if (localStorage.getItem('uid') === null && enterName) {
+            localStorage.setItem('uid', enterName);
+        }
+        if (localStorage.getItem('uid') === null && enterNumber) {
+            localStorage.setItem('number', enterNumber);
+        }
+
+
+        setIsInput(true);
+        // setIsEnter(true);
+    };
+
+    const handleEnterClick = () => {
+        setIsEnter(isCheckedEnter());
+    };
+
+    const handleNameChange = data => {
+        const value = data.target.value;
+        localStorage.setItem('uid', value);
+        setEnterName(value);
+    };
+*/
+    return (
+        <>
+            <div className={`enter-card enter-card-${isEnter}`}>
+                <div className="cover">
+                    <div className={`welcome-img-${isInput}`}>
+                        <input type="url"
+                               className="input-name"
+                               placeholder="your name"
+                               value={NAME.value}
+                               onChange={NAME.change}
+                        ></input>
+                        <input type="number" pattern="\d*"
+                               className="input-number"
+                               placeholder="phone numer"
+                               value={enterNumber}
+                               onChange={data => {
+                                   const value = data.target.value;
+                                   localStorage.setItem('number', value);
+                                   // setEnterNumber(value)
+                               }}
+                        ></input>
+                        {/*<div onClick={handleEnterClick}>입장</div>*/}
+                    </div>
+                    {/*<div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>*/}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default withEnter;
