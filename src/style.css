@@ -34,7 +34,7 @@ body{
   display: flex;
   justify-content: center;
   justify-content: start;
-  z-index: 9999999999;
+  z-index: 999999999;
   position: absolute;
 }
 .timer {
@@ -104,13 +104,22 @@ body{
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABWVJREFUWEfFV21MU2cUft7b3n7RUstX+VS2IOjUAZsYplnm5MMs23QsMs1M3GATZPwRZ7LEmMwlki3biPtjIhicmLiRONmcbokoks2ZyDAijkyYONFWEGYppYV+3N57l/eyVjoLLcXE99fNee95zvOe85xz30vwhBeZa/ylWuPyfbEvN2Rz+jw5D7lIAJ7A262wde6ztFfccAz3zAUzbAJ66A3n00pvGjyyWBrACwGjokuKFUPUkGMKakzBjxaYTmTYYLOGQyQsAiv0C5//XvXKFQrYxt3BrrE2TAocxP8iUBANw6JuwToUsumS9Q3Xz3k9NpPkM9sKSUCn08V2ad5+QEFet36HGx4LtFotWltbERcXJ2FbLBYUFRXB4XBgqSIWpw2bJHvu5Dfxdrtd8p1phSRwNXX7WDTH6H3BU1JS0NTUJAUUxakcEEIkQmVlZTCbzViiiMEZQynsrDCeaz6sj5hAdnTqqpPqVztaPQP4wHpWwhkcHERycnJQzKGhISQlJUl7Bw3FWK94Cm86f8q/Pm7uiCgDpxZt7Vrm0uZk/9OICcELlUqF6upq1NXVBcXbuXMnDh06BJfLBQ0jx/X49/CnwtG9wXQ8JyICfUmVXlEQZEuHD0uC0+v1KCgoQEtLS1C8kpIStLe3Y2xsTNrvNW4HYRg+a6heHhGBfuMO8YHoRP5Ik7/W586dQ2FhYVA8uldcXOzXxuWEbYgjamQM18+otVlF2G+sFMdED1aOfO0PSNPf0NCAvr6+ABKZmZmoqqpCTU2N396Z8A4MRBU5gZ7kCpeSJ8rM4Xp/z1P0xsZGuN1u1NbWSsH27NkDtVqN8vJyf3B6sj5jJTwy0b18sEEVUQkOpm1sWe9JLCkcbcZd3h6AwbIs8vLyJFtnZyc4jgvYT5XpcCFmC86ygz9Um0+XREQgUauN/y1q68g9TKDA0vwIRlpammQzmUyP7J2P3YxUaLFm4rhx2OEYiYgAdWpOLb20kotZfcDZiYPjVwNw0tOnxu7AwECAvUqXiw81q9ClsnWU3mnOnyk4tYechPSdnpQKp8pLlEddPdhvu+THC0Zgb/RqvKteAY8c7mfu1auBAPk8wiUcAtRJcS11u0XLMVo3eHxsv4gfnf1ISZ8qwb0BEzaoM/CJ7kUoIcMEKzqyzQ30q+mZ7fThZsCPcSy9tG21M2YdNXSzTljhlo5ngBI5HD0scCVq/Nctf3/7UqjAvv1wM4CFKv3TF/Rbbk0HtksHJNCBDYhXNHlyyW37g8BBMQOjsAn0Jldy9AYUjIAhczGIVgPPX7dBHE7wDGYdv9MxwiKwOeG5ilqSV08dRVYmEI5n6LMvA6NyEVbCYzFRCVEehqG6289cqzk61PFVqFKERWCR2mCXcYL2LWNu7/verCU+UB8BDViIRJQuiA3szT9ODl9dwcuJc8Bp1TwOAvS0vE+xny5Yi03KLAn3/xo47enHLmvb9L6jJZN8Z1rhZIAQQKBqpw9dCeUYFBxSu1lElzRIEhiNdEdMZrTIGTkynYAMgDBfAtQ/PlqnO7pPtyZ/GaePOeO6hXhGhbuCHUQEsuSxuMPb8JoyA30K++he+8XfebtQNoGJ+4+jBD4Mxc3EShcRH07PYG1I/xMW369XhjOE5jSIdiev/WwHn/VROHOgnu39/AvzLwHvzkcDku/GxGe3fSm+0DRdNEEzAGC37HL5qcHuh7eYeYpQcmdZdtLLcepEeRQO6AuRq0jiT7C3jxAQsolLL+vyDMlqbOdx3zsBuVzu5LzekC04pxLIZTI3z/MK2g0MIaIgivSW4/vYKBhCnIIoMjRDjEzm4Xme6iDkCqcNQ4LM54UnTuBf+AMBPzE/RUkAAAAASUVORK5CYII=)
 }
 
+.enter-card-bg-true {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999999999999;
+  background: white;
+  top: 0;
+}
+
 .enter-card {
   position: absolute;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
-  z-index: 9999999999;
+  z-index: 999999999999;
   background: white;
   /*align-items: center;*/
 }
