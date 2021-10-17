@@ -10,6 +10,7 @@ import './boom2.js';
 
 function App() {
     const url = process.env.REACT_APP_SOCKET_URL;
+    //const url = 'http://132.226.171.26:3000';
     const [socket, setSocket] = useState();
     const [refresh, setRefresh] = useState(false);
     const socketConnection = data => {
