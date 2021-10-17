@@ -6,11 +6,13 @@ function Enter(props) {
     //
     const isCheckedEnter = () => {
         let isChecked = localStorageHasItem('uid');
+        /*
         if (isChecked && localStorageHasItem('number')) {
             isChecked = true;
         } else {
             isChecked = false;
         }
+        */
 
         return isChecked;
     };
@@ -41,25 +43,26 @@ function Enter(props) {
             localStorage.setItem('uid', nameValue);
         }
         if (!localStorageHasItem('number') && numberValue) {
-            localStorage.setItem('number', numberValue);
+            // localStorage.setItem('number', numberValue);
         }
 
         setIsInput(true);
     };
 
     const handleClickEnter = () => {
-        if (localStorageHasItem('uid')
-                && localStorageHasItem('number')) {
+        if (localStorageHasItem('uid') /*&& localStorageHasItem('number')*/) {
 
             setIsEnter(true);
             setIsInput(true);
 
             props.conn({
                 uid: localStorage.getItem('uid'),
-                number: localStorage.getItem('number')
+                // number: localStorage.getItem('number')
             });
 
-            window.open(window.location.href);
+            setTimeout(() => {
+                window.open(window.location.href)
+            }, 50);
         }
     };
 
@@ -71,7 +74,7 @@ function Enter(props) {
 
         props.conn({
             uid: localStorage.getItem('uid'),
-            number: localStorage.getItem('number')
+            // number: localStorage.getItem('number')
         });
     }, [isInput]);
 
@@ -84,7 +87,7 @@ function Enter(props) {
             <div className={`enter-card enter-card-${isEnter}`}>
                 <div className="cover">
                     <div className={`welcome-img-${isInput}`}>
-                        <input type="url"
+                        <input type="text"
                                className="input-name"
                                placeholder="your name"
                                value={nameValue}
@@ -92,7 +95,7 @@ function Enter(props) {
                         ></input>
                         <input type="number" pattern="\d*"
 
-                               className="input-number"
+                               className="input-number none"
                                placeholder="phone numer"
                                value={numberValue}
                                onChange={data => handleChange(data.target.value, 'number', setNumberValue)}
