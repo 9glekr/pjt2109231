@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react';
-import io from 'socket.io-client';
 
 function Main(props) {
     // 참가자 수
@@ -14,13 +13,19 @@ function Main(props) {
     const [die, setDie] = useState(false);
     // 종료
     const [ending, setEnding] = useState(false);
+    // 통과
+    const [pass, setPass] = useState(false);
+    // 랭커
+    const [ranker, setRanker] = useState([]);
 
     const [socket, setSocket] = useState(props.socket);
+
+    const elWait = useRef();
 
     // 시간
     const [remainTime, setRemainTime] = useState('00:00');
 
-    let test = 600;
+    // let test = 600;
 
     useEffect(()=> {
         setSocket(props.socket);
@@ -28,51 +33,92 @@ function Main(props) {
 
     useEffect(()=>{
         if ( socket === undefined ) return;
-
-        socket.on('message',data=>{
-            // console.log(2 , data);
-
-            //sendMessage(Math.random());
-            /*
-            setTimeout(() => {
-                sendMessage(Math.random());
-            }, 2000);
-            */
-        });
         // 참가자 수
         socket.on('users', data => setUsers(data));
         // 참가자 정보
         socket.on('info',data=>{
             //console.log( 'info' ,  data )
             setInfo(data);
-            /*
-            setInfo((() => {
-                let temp = [];
-
-                for(let i = 0; i < 50; i++) {
-                    temp.push(...data);
-                }
-
-                console.log( temp );
-                return temp;
-            })())*/
         });
         // 멈춤
         socket.on('freeze', data => {
-            console.log( 'freeze' ,  data )
+            // console.log( 'freeze' ,  data )
             setFreeze( data );
             setTouchMsg( !data );
         });
-        // 멈춤
+        // 종료
         socket.on('ending', data => {
-            console.log( 'ending' ,  data )
-            setEnding(data);
+            // console.log('ending', data, ending, ranker)
+            setRanker(data);
+            setEnding(true);
+
+            // const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@$%&';
+/*
+            document.querySelectorAll('.neon').forEach((el,i) => {
+                document.getElementById('anim' + i).innerText = '';
+
+                let str = 'TESFFFFKSFKSKDBFKA';
+                let inc = 0;
+                let out = 0;
+
+                const anim = (data) => {
+                    console.log('ani...', data)
+                    // inc++;
+//                    document.getElementById('shuffle' + i).innerText = chars[Math.floor(Math.random() * chars.length)];
+                    document.getElementById('shuffle' + i).innerText = chars[Math.floor(Math.random() * chars.length)];
+
+                    if (inc % 7 === 0 && out < str.length) {
+                        document.getElementById('anim' + i).appendChild(document.createTextNode(str[out]));
+                        out++;
+                    } else if (out >= str.length) {
+                        document.getElementById('shuffle' + i).innerText = '';
+                    }
+
+
+                    if (data < 30) {
+                        setTimeout(anim, 400, ++data);
+                    }
+
+
+                };
+
+                setTimeout(anim, 400, 1);
+
+                /*
+                let str = 'DAN';
+                let inc = 0;
+                let out = 0;
+                let time;
+                document.getElementById('shuffle0').innerText = chars[Math.floor(Math.random() * chars.length)];
+                var anim = function () {
+                    inc++;
+
+
+                    if (inc % 7 === 0 && out < str.length) {
+                        document.getElementById('anim0').appendChild(document.createTextNode(str[out]));
+                        out++;
+                    } else if (out >= str.length) {
+                        document.getElementById('shuffle0').innerText = '';
+                        clearInterval(time);
+                    }
+                };
+
+                time = setTimeout(anim, 40);
+
+ */
+            // });
+        });
+        // 통과
+        socket.on('pass', data => {
+            // console.log( 'pass' ,  data )
+            setPass(true);
         });
         // 런타임
         socket.on('runtime', data => {
-            console.log( 'runtime' ,  data )
-
-            //data = test--;
+            // console.log( 'runtime' ,  data )
+            if (data < 75) {//75
+                elWait.current.className = 'waitfalse';
+            }
 
             const min = parseInt((data%3600)/60);
             const sec = data % 60;
@@ -84,7 +130,7 @@ function Main(props) {
                 touchFreeze(true);
                 setTimeout(() => {
                     setEnding(true)
-                }, 1000);
+                }, 500);
             }
 
         });
@@ -93,13 +139,17 @@ function Main(props) {
     useEffect(() => {
 
     }, [remainTime]);
-
+/*
+    useEffect(() => {
+        console.log('ranker...' , ranker, ending);
+    }, [ranker]);
+*/
     // 터치 이벤트
     const touch = data => socket.emit('touch', 1);
     // 멈춤 이벤트
     const touchFreeze = data => {
 
-        console.log('die...', remainTime);
+        // console.log('die...', remainTime);
 
         if (remainTime === '01:15') {
             return;
@@ -112,7 +162,7 @@ function Main(props) {
     };
     // 게임시간 관리
     const handleTimer = data => {
-        console.log( data )
+        // console.log( data )
         socket.emit('start', localStorage.getItem('uid'));
     };
 
@@ -164,7 +214,7 @@ function Main(props) {
                                 )
                             }
                         } else {
-                            return (<div key={i}></div>);
+                            return (<div key={i}></div>)
                         }
                     })
                 }
@@ -173,11 +223,27 @@ function Main(props) {
                 <div className="bike__cloud-11"></div>
                 <div className="bike__cloud-22"></div>
             </div>
+            <div className={`pass${pass}`}></div>
             <div className={`die${die}`}></div>
+            <div className={`waittrue`} ref={elWait}></div>
             <div className={`freeze${freeze}`} onTouchStart={touchFreeze}></div>
 
-            <div className={`ending${ending}`}></div>
-
+            <div className={`ending${ending} result`} style={{display:'none1'}}>
+                <div className='result-txt'>* 통 과 인 원 *<br/>WINNER OF PLAYERS</div>
+                <div className="neon_effect">
+                    {
+                        ranker.length > 0 && ranker.map((data,i) => {
+                            return (
+                                <div key={i}>
+                                    {/*{data.uid}*/}
+                                    {/*<p>{data.uid}</p>*/}
+                                    <p className='neon' data-uid={data.uid}>{data.uid}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
         </>
     )
 }

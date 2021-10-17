@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
 function Enter(props) {
-    // 정보 입력 체크
-    const localStorageHasItem = key => {
-        return key in localStorage;
-    };
+    // 키 유무 확인
+    const localStorageHasItem = key => key in localStorage;
+    //
     const isCheckedEnter = () => {
         let isChecked = localStorageHasItem('uid');
         if (isChecked && localStorageHasItem('number')) {
@@ -41,19 +40,31 @@ function Enter(props) {
         if (!localStorageHasItem('uid') && nameValue) {
             localStorage.setItem('uid', nameValue);
         }
-        if (!localStorageHasItem('uid') && nameValue) {
-            localStorage.setItem('number', nameValue);
+        if (!localStorageHasItem('number') && numberValue) {
+            localStorage.setItem('number', numberValue);
         }
 
         setIsInput(true);
     };
 
+    const handleClickEnter = () => {
+        if (localStorageHasItem('uid')
+                && localStorageHasItem('number')) {
+
+            setIsEnter(true);
+            setIsInput(true);
+
+            props.conn({
+                uid: localStorage.getItem('uid'),
+                number: localStorage.getItem('number')
+            });
+        }
+    };
 
     /**
      * 접속 정보가 있을 경우에만 소켓 연결
      */
     useEffect(() => {
-        console.log('isInput...' , isEnter , isInput)
         if (!isEnter) return;
 
         props.conn({
@@ -78,13 +89,17 @@ function Enter(props) {
                                onChange={data => handleChange(data.target.value, 'uid', setNameValue)}
                         ></input>
                         <input type="number" pattern="\d*"
+
                                className="input-number"
                                placeholder="phone numer"
                                value={numberValue}
                                onChange={data => handleChange(data.target.value, 'number', setNumberValue)}
                         ></input>
+                        <div className='enter-btn'>
+                            <div onClick={handleClickEnter}>ENTER</div>
+                        </div>
                     </div>
-                    {<div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>}
+                    <div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>
                 </div>
             </div>
         </>
