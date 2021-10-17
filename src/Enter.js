@@ -101,7 +101,7 @@ function Enter(props) {
                             <div onClick={handleClickEnter}>ENTER</div>
                         </div>
                     </div>
-                    <div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>ㅇㅅㅁ</div>
+                    <div className={`welcome-img-${!isInput} welcome-img`} onClick={handleWelcomeClick}>○ △ □</div>
                 </div>
             </div>
         </>

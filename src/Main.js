@@ -168,12 +168,13 @@ function Main(props) {
 
     const handleClickRefresh = () => {
         // window.location.reload();
-        window.open(window.location.href);
+        // window.open(window.location.href);
     };
 
 
     return (
         <>
+            <div className={'txt-guide'}>"무궁화 꽃이 피었습니다" 글씨가 보일 때만 터치하세요.</div>
             <div className="entry">
                 <div className="timer" onClick={handleTimer}>{remainTime}</div>
                 <div className="count none">{users}명</div>
