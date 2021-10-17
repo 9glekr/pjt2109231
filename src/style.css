@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 html{
-  min-height: -webkit-fill-available;
+  height: -webkit-fill-available;
 }
 body{
   overflow: hidden;
   touch-action: pan-x pan-y;
   touch-action: none;
+  min-height: -webkit-fill-available;
 }
 
 
