@@ -229,7 +229,9 @@ function Main(props) {
                 <div className="bike__cloud-11"></div>
                 <div className="bike__cloud-22"></div>
             </div>
-            <div className={`pass${pass}`}></div>
+            <div className={`pass${pass}`}>
+                <h1><span>"축하</span><span>합니다"</span></h1>
+            </div>
             <div className={`die${die}`}></div>
             <div className={`waittrue`} ref={elWait}></div>
             <div className={`freeze${freeze}`} onTouchStart={touchFreeze}></div>
