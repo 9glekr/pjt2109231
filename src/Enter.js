@@ -58,6 +58,8 @@ function Enter(props) {
                 uid: localStorage.getItem('uid'),
                 number: localStorage.getItem('number')
             });
+
+            window.open(window.location.href);
         }
     };
 

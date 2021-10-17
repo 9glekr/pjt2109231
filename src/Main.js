@@ -166,6 +166,11 @@ function Main(props) {
         socket.emit('start', localStorage.getItem('uid'));
     };
 
+    const handleClickRefresh = () => {
+        // window.location.reload();
+        window.open(window.location.href);
+    };
+
 
     return (
         <>
@@ -178,7 +183,7 @@ function Main(props) {
             </div>
             <div className="finish"></div>
             <div className="cc64"></div>
-            <div className="ss64"></div>
+            <div className="ss64" onClick={handleClickRefresh}></div>
             <div className="mm32"></div>
             <div className="aa32"></div>
             <div>
